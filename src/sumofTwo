@@ -1,0 +1,25 @@
+function twoSum(nums, target) {
+    if (typeof target !== 'number') {
+        return 'Error: Target must be a number.';
+    }
+    if (!Array.isArray(nums) || nums.length < 2) {
+        return 'Error: The array must contain more than 2 elements.';
+    }
+
+    const indexMap = {};
+    for (let i = 0; i < nums.length; i++) {
+        const num = nums[i];
+        const complement = target - num;
+        if (complement in indexMap) {
+            return [indexMap[complement], i];
+        }
+        indexMap[num] = i;
+    }
+    return 'No two numbers add up to get the target.';
+}
+
+const nums = [-1, 7, 11, 15];
+const target = 9;
+
+const result = twoSum(nums, target);
+console.log(result);
